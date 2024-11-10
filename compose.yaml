@@ -1,0 +1,29 @@
+services:
+  front-end:
+    image: node:18-alpine
+    command: sh -c "yarn install && yarn run start"
+    ports:
+      - 127.0.0.1:3000:3000
+    working_dir: /app
+    volumes:
+      - ./front-end:/app
+
+  back-end:
+    image: node:18-alpine
+    command: sh -c "yarn install && yarn run start"
+    ports:
+      - 127.0.0.1:8080:8080
+    working_dir: /app
+    volumes:
+      - ./back-end:/app
+  
+  database:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keykeeper
+    volumes:
+      - keykeeper-mysql:/var/lib/mysql
+
+volumes:
+  keykeeper-mysql:
