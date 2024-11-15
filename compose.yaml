@@ -22,6 +22,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: keykeeper
+    ports:
+      - '3306:3306'
     volumes:
       - keykeeper-mysql:/var/lib/mysql
 
